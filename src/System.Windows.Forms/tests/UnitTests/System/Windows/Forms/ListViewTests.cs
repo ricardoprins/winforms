@@ -1620,7 +1620,9 @@ namespace System.Windows.Forms.Tests
         {
             using var control = new ListView();
             Assert.NotEqual(IntPtr.Zero, control.Handle);
-            Assert.Equal(IntPtr.MaxValue, User32.SendMessageW(control.Handle, (User32.WM)LVM.GETTEXTBKCOLOR));
+
+            IntPtr expected = Environment.Is64BitProcess ? (IntPtr)0xFFFFFFFF : IntPtr.MaxValue;
+            Assert.Equal(expected, User32.SendMessageW(control.Handle, (User32.WM)LVM.GETTEXTBKCOLOR));
         }
 
         [WinFormsFact]
