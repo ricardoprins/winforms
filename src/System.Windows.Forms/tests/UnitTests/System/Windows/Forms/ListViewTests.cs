@@ -1620,7 +1620,7 @@ namespace System.Windows.Forms.Tests
         {
             using var control = new ListView();
             Assert.NotEqual(IntPtr.Zero, control.Handle);
-            Assert.Equal((IntPtr)0xFFFFFFFF, User32.SendMessageW(control.Handle, (User32.WM)LVM.GETTEXTBKCOLOR));
+            Assert.Equal(IntPtr.MaxValue, User32.SendMessageW(control.Handle, (User32.WM)LVM.GETTEXTBKCOLOR));
         }
 
         [WinFormsFact]
